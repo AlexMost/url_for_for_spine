@@ -44,7 +44,7 @@ and you will get url.
 ### using url_for in eco templates.
 Also is true for templates.
 ```eco
-<% h = require('lib/url_for_extender') %>
+<% h = require('spine').h %>
 <a href="#<%= h.url_for('MyController', 'edit', 7) %>">edit</a>
 ```
 
