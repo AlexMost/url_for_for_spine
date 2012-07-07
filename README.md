@@ -32,20 +32,25 @@ class MyController extends Spine.Controller
     id = args.id
 ```
 
-# How to get url?
+### How to get url?
 
 After importign url_for_extender you have helper object in Spine.
-So, when you need to get some url just use Spine.h.url_for("ControllerName", "action", parameters...)
+So, when you need to get some url just use:
+```CoffeeScript
+Spine.h.url_for("ControllerName", "action", parameters...)
+```
+
 and you will get url.
 
-# using url_for in eco templates.
+### using url_for in eco templates.
 Also is true for templates.
-
+```
 <%- h = require('lib/url_for_extender') %>
 
 <a href="#<%= h.url_for("MyController", "edit", 7) %>">edit</a>
-
+```
 
 this will render the folowing:
-
+```html
 <a href="#object/edit/7">edit</a>
+```
