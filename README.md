@@ -8,9 +8,14 @@ Adds support for generating dynamic urls by name of controller and action. Just 
 Usage
 =================
 
-1. Put url_for_extender.coffee file to your lib folder in spine app.
-2. Import it somewhere (require('lib/url_for_extender')
-3. Add some actions to controller by calling add_actions in controllers constructor.
+1. Setup routing as described here <a href="http://spinejs.com/docs/routing">Spine Routing</a>
+```CoffeeScript
+Route = require('lib/route')
+Route.setup()
+```
+2. Put url_for_extender.coffee file to your lib folder in spine app.
+3. Import it somewhere (require('lib/url_for_extender')
+4. Add some actions to controller by calling add_actions in controllers constructor.
 You don't have to need to care about routing - all this is done behind the scene by actions.
 
 ```CoffeeScript
