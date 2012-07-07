@@ -24,10 +24,8 @@ class MyController extends Spine.Controller
       "/object/edit/:id" : "edit"
     )
 
-    
   index: (args) =>
     # Some logic processing.
-
 
   edit: (args) =>
     id = args.id
