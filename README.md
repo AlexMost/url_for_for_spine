@@ -11,7 +11,7 @@ Usage
 1. Put url_for_extender.coffee file to your lib folder in spine app.
 2. Import it somewhere (require('lib/url_for_extender')
 3. Add some actions to controller by calling add_actions in controllers constructor.
-You don't have need to cate about routing - all this is done behind the scene by actions.
+You don't have to need to care about routing - all this is done behind the scene by actions.
 
 ```CoffeeScript
 
@@ -48,7 +48,7 @@ Also is true for templates.
 ```eco
 <%- h = require('lib/url_for_extender') %>
 
-<a href="#<%= h.url_for("MyController", "edit", 7) %>">edit</a>
+<a href="#<%= h.url_for('MyController', 'edit', 7) %>">edit</a>
 ```
 
 this will render the folowing:
