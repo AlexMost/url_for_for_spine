@@ -1,7 +1,7 @@
 url_for_for_spine
 =================
 
-Helper for extending Spne.js Controllers functionality. 
+Helper for extending Spine controllers functionality. 
 Adds support for generating dynamic urls by name of controller and action. Just like in Pylons.
 
 
@@ -40,7 +40,7 @@ class MyController extends Spine.Controller
 
 ### How to get url?
 
-After importign url_for_extender you have helper object in Spine.
+After importing url_for_extender you have helper object in Spine.
 So, when you need to get some url just use:
 ```CoffeeScript
 Spine.h.url_for('ControllerName', 'action', param1, param2 e.t.c.)
