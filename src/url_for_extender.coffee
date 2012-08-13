@@ -4,45 +4,44 @@ $ = Spine.$
 Spine.h or={}
 
 # Extending Spine.Controller to support actions
-add_actions = (actions) ->
-  @actions = {} unless @actions
+add_actions = (controller, actions) ->
+  controller.actions = {} unless controller.actions
 
   Spine.container or=[]
 
-  if @ not in Spine.container
-    Spine.container.push @
+  Spine.container.push controller unless \
+    controller in Spine.container
 
-  $.each actions, (route, func_name) =>
-    @actions[func_name] = route
+  _exec = (func_name) ->
+      ->
+          controller[func_name] arguments...
+          controller.active()
 
-    if typeof @[func_name] == "function"
-      new_func_name = "__execute_action_#{func_name}"
-
-      @[new_func_name] = =>
-        @[func_name](arguments...)
-        @.active()
-
-      @route(route, @[new_func_name])
+  for route, func_name of actions
+    if typeof controller[func_name] == "function"
+      controller.actions[func_name] = route
+      controller.route(route, _exec func_name)
 
 
-url_for = (controller_name, action, parameters...) =>
+url_for = (controller_name, action, parameters...) ->
+  ControllerType = require "controllers/#{controller_name}"
+  _controller_name = new ControllerType().constructor.name
 
   hashStrip    = /^#*/
   namedParam   = /:([\w\d]+)/g
   splatParam   = /\*([\w\d]+)/g
   escapeRegExp = /[-[\]{}()+?.,\\^$|#\s]/g
 
-  url_path = ""
   for controller in Spine.container
-    if controller.constructor.name == controller_name
-      #url_path =  Spine.clean_from_regexp(controller.actions[action])
+    if controller.constructor.name == _controller_name
       url_path = controller.actions[action]
       url_path = url_path.replace(hashStrip, '')
         .replace(splatParam, '')
         .replace(namedParam, '')
         .replace(escapeRegExp, '')
       url_path += parameters.join('/')
-      return url_path
+
+  url_path
 
 Spine.h.url_for = url_for
 Spine.Controller::add_actions = add_actions
