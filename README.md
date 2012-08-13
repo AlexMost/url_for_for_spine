@@ -26,10 +26,9 @@ class MyController extends Spine.Controller
 
   constructor: ->
     super
-    @add_actions(
-      "/index":"index",
+    @add_actions @,
+      "/index":"index"
       "/object/edit/:id" : "edit"
-    )
 
   index: (args) =>
     # Some logic processing.
